@@ -1,5 +1,10 @@
 package com.example.truckmanagementtransportationmicroservice.model;
 
+/** Created  by Mohamed Abdullahi , Patrick Hakim, Ryan Kim, Wynton Huang, Alex
+ *  Date : Fri Oct 2022
+ *  Time : 11: 27 PM
+ *  Project Name: Truck Management Appp
+ */
 
 import lombok.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,7 +24,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@CrossOrigin()
+@CrossOrigin(" ") // We will Add CrossOrigin When we have the FrontEnd Ready
 public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +36,4 @@ public class Route {
     private Destination From;
     private Destination To;
     private Status status;
-
-
 }
