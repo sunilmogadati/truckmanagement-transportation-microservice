@@ -1,9 +1,10 @@
-package com.example.truckmanagementtransportationmicroservice.model;
+package com.transportation.microservice.model;
 
 import org.springframework.data.annotation.Id;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
 @Getter
 @Setter
 @ToString

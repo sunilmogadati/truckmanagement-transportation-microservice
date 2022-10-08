@@ -1,4 +1,4 @@
-package com.example.truckmanagementtransportationmicroservice;
+package com.transportation.microservice.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
