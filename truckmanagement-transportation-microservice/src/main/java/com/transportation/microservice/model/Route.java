@@ -1,23 +1,24 @@
 package com.transportation.microservice.model;
 
-import org.springframework.data.annotation.Id;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @ToString
+@Entity
 public class Route {
-
   @Id
-  int id;
-  LocalDateTime startDate;
-  LocalDateTime endDate;
-  String startLocation;
-  String endLocation;
-  boolean completed;
-  
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
+
+  private LocalDateTime startDate;
+  private LocalDateTime endDate;
+  private String startLocation;
+  private String endLocation;
+  private boolean completed;
+
 }
