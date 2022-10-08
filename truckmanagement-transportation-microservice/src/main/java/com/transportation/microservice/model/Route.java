@@ -5,16 +5,19 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @ToString
-public class Truck {
+public class Route {
 
   @Id
   int id;
-  String make;
-  String model;
-  int year;
-
-
+  LocalDateTime startDate;
+  LocalDateTime endDate;
+  String startLocation;
+  String endLocation;
+  boolean completed;
+  
 }
