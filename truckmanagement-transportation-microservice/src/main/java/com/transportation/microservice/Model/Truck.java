@@ -19,6 +19,9 @@ public class Truck {
 
     @Id
     private int id;
+    private String make;
+    private String model;
+    private int year;
 
 
 }
