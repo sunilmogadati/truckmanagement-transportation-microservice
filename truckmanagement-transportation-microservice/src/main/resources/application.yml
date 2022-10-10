@@ -1,12 +1,8 @@
-
+server:
+    port: 8080
 spring:
-  application:
-    name: TMS-service
   data:
-    mongodb.host: localhost
-    mongodb.port : 27017
-    mongodb.uri: mongodb+srv://Cluster47748:Z3NtRlJKVW9B@cluster47748.g8qeokq.mongodb.net/RouteService?retryWrites=true&w=majority
-    mongodb.repositories.enabled: true
-server.port : 8089
-
-
+    mongodb:
+      database: RouteService
+      host: localhost
+      port: 27017

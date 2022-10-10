@@ -4,10 +4,13 @@ import org.springframework.http.ResponseEntity;
 import com.transportation.microservice.Model.Route;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RouteServiceInterface {
 
-  ResponseEntity<Route> getRouteById(long id);
+
+
+  Optional<Route> getRouteById(String id);
 
   ResponseEntity<List<Route>> getListofRoute();
 

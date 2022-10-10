@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class RouteService implements RouteServiceInterface  {
@@ -16,17 +17,30 @@ public class RouteService implements RouteServiceInterface  {
     @Autowired
     RouteRepository routerepo;
 
+//    private static  final String GOOGLE_API_KEY = "AIzaSyBtgmohbR3cDFi5nhPT7QZJQJ3T38nqtH4";
+//    OkHttpClient client = new OkHttpClient();
+
+
 
 
     @Override
-    public ResponseEntity<Route> getRouteById(long id) {
-        Optional<Route> routeData = routerepo.findById(id);
-        if(routeData.isPresent()){
-            return new ResponseEntity<>(routeData.get(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<Route>(HttpStatus.NOT_FOUND);
-        }
+    public Optional<Route> getRouteById(String id) {
+        return routerepo.findById(id);
     }
+
+
+
+
+//    public void  getRouteDistance(String startLocation, String endLocation) throws IOException {
+//        String url="https://maps.googleapis.com/maps/api/distancematrix/json?origins="+startLocation+"&destinations="+endLocation+"&key="+ GOOGLE_API_KEY;
+//        Request request = new Request.Builder()
+//                .url(url)
+//                .build();
+//        Response response = client.newCall(request).execute();
+//        String k = response.body().string();
+//        System.out.println(k);
+//
+//    }
 
 
 
@@ -45,6 +59,7 @@ public class RouteService implements RouteServiceInterface  {
 
     @Override
     public Route addRoute(Route route) {
+        route.setRouteid(UUID.randomUUID().toString().split("_")[0]);
         return routerepo.save(route);
     }
 
