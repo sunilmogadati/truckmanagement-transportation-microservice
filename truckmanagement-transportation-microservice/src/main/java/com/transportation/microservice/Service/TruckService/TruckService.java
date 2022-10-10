@@ -13,7 +13,6 @@ public class TruckService implements TruckServiceInterface {
     @Autowired
     TruckRepository truckRepo;
 
-
     @Override
     public ResponseEntity<Truck> getTruckById(int id) {
         return null;

@@ -15,15 +15,11 @@ public interface RouteServiceInterface {
   List<Route> getRouteByDestination(String destination);
   List<Route> getRouteBySource(String source);
   List<Route> getRouteByStatus(String status);
-
   List<Route> searchFilter(String source, String destination, String status);
+  long getRouteDistance(String source, String destination);
 
 
 
 
-//  ResponseEntity<Route> getRouteById(long id);
-//
-//  ResponseEntity<Route> getRouteDestination(String destination);
-//  ResponseEntity<Route> getStartPoint(String start);
-//  ResponseEntity<Route> getRouteStatusById(int id);
+
 }

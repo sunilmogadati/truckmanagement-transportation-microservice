@@ -2,6 +2,7 @@ package com.transportation.microservice.Service.RouteService;
 
 import com.transportation.microservice.Dao.RouteRepository;
 import com.transportation.microservice.Model.Route;
+import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,30 +18,8 @@ public class RouteService implements RouteServiceInterface  {
     @Autowired
     RouteRepository routerepo;
 
-//    private static  final String GOOGLE_API_KEY = ""
-//    OkHttpClient client = new OkHttpClient();
-
-
-
-
-
-
-
-
-
-
-//    public void  getRouteDistance(String startLocation, String endLocation) throws IOException {
-//        String url="https://maps.googleapis.com/maps/api/distancematrix/json?origins="+startLocation+"&destinations="+endLocation+"&key="+ GOOGLE_API_KEY;
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .build();
-//        Response response = client.newCall(request).execute();
-//        String k = response.body().string();
-//        System.out.println(k);
-//
-//    }
-
-
+    private static  final String GOOGLE_API_KEY = "";
+    OkHttpClient client = new OkHttpClient();
     @Override
     public ResponseEntity<Route> getRouteById(String id) {
         Optional<Route> route = routerepo.findById(id);
@@ -71,11 +50,7 @@ public class RouteService implements RouteServiceInterface  {
        }else{
            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
        }
-
-
-
     }
-
     @Override
     public Route addRoute(Route route) {
         route.setRouteid(UUID.randomUUID().toString().split("_")[0]);
@@ -102,15 +77,17 @@ public class RouteService implements RouteServiceInterface  {
     public List<Route> getRouteBySource(String source) {
         return null;
     }
-
     @Override
     public List<Route> getRouteByStatus(String status) {
         return null;
     }
-
     @Override
     public List<Route> searchFilter(String source, String destination, String status) {
         return null;
+    }
+    @Override
+    public long getRouteDistance(String source, String destination) {
+        return 0;
     }
 
 }
