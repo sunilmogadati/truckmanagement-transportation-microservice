@@ -17,7 +17,7 @@ public class RouteService implements RouteServiceInterface  {
     @Autowired
     RouteRepository routerepo;
 
-//    private static  final String GOOGLE_API_KEY = "AIzaSyBtgmohbR3cDFi5nhPT7QZJQJ3T38nqtH4";
+//    private static  final String GOOGLE_API_KEY = ""
 //    OkHttpClient client = new OkHttpClient();
 
 
@@ -61,8 +61,6 @@ public class RouteService implements RouteServiceInterface  {
      * @return ReposeEntity of List of Routes
      */
 
-
-
     @Override
     public ResponseEntity<List<Route>> getListofRoute() {
        List<Route> routeData = routerepo.findAll();
@@ -85,19 +83,34 @@ public class RouteService implements RouteServiceInterface  {
         return routerepo.save(route);
     }
 
+    @Override
+    public ResponseEntity<Route> deleteRoute(String id) {
+        return null;
+    }
 
-//    @Override
-//    public ResponseEntity<Route> getRouteDestination(String destination) {
-//        Optional<Route>
-//    }
-//
-//    @Override
-//    public ResponseEntity<Route> getStartPoint(String start) {
-//        return null;
-//    }
-//
-//    @Override
-//    public ResponseEntity<Route> getRouteStatusById(int id) {
-//        return null;
-//    }
+    @Override
+    public ResponseEntity<Route> updateRoute(Route route) {
+        return null;
+    }
+
+    @Override
+    public List<Route> getRouteByDestination(String destination) {
+        return null;
+    }
+
+    @Override
+    public List<Route> getRouteBySource(String source) {
+        return null;
+    }
+
+    @Override
+    public List<Route> getRouteByStatus(String status) {
+        return null;
+    }
+
+    @Override
+    public List<Route> searchFilter(String source, String destination, String status) {
+        return null;
+    }
+
 }

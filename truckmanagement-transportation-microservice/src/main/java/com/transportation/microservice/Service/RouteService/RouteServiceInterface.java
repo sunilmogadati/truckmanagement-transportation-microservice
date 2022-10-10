@@ -7,14 +7,18 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RouteServiceInterface {
-
-
-
   ResponseEntity<Route> getRouteById(String id);
-
   ResponseEntity<List<Route>> getListofRoute();
-
   Route addRoute(Route route);
+  ResponseEntity<Route> deleteRoute(String id);
+  ResponseEntity<Route> updateRoute(Route route);
+  List<Route> getRouteByDestination(String destination);
+  List<Route> getRouteBySource(String source);
+  List<Route> getRouteByStatus(String status);
+
+  List<Route> searchFilter(String source, String destination, String status);
+
+
 
 
 //  ResponseEntity<Route> getRouteById(long id);
