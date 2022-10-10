@@ -23,10 +23,8 @@ public class RouteService implements RouteServiceInterface  {
 
 
 
-    @Override
-    public Optional<Route> getRouteById(String id) {
-        return routerepo.findById(id);
-    }
+
+
 
 
 
@@ -43,10 +41,33 @@ public class RouteService implements RouteServiceInterface  {
 //    }
 
 
+    @Override
+    public ResponseEntity<Route> getRouteById(String id) {
+        Optional<Route> route = routerepo.findById(id);
+        System.out.println(route.get());
+        if(route.isPresent()){
+            return new ResponseEntity<>(route.get(), HttpStatus.FOUND);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+
+    }
+
+    /**
+     * This <Method Returns ReposeEntity of List of Routes
+     * Checks the Size of routeData if size is less than 1 : returns HttoStatus Not_Found
+     *
+     * @return ReposeEntity of List of Routes
+     */
+
+
 
     @Override
     public ResponseEntity<List<Route>> getListofRoute() {
        List<Route> routeData = routerepo.findAll();
+
+       routeData.stream().forEach(System.out::println);
        if(routeData.size() > 1){
            return new ResponseEntity<>(routeData, HttpStatus.OK);
        }else{
@@ -60,6 +81,7 @@ public class RouteService implements RouteServiceInterface  {
     @Override
     public Route addRoute(Route route) {
         route.setRouteid(UUID.randomUUID().toString().split("_")[0]);
+        System.out.println(route);
         return routerepo.save(route);
     }
 

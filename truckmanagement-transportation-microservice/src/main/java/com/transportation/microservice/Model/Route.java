@@ -7,6 +7,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -35,4 +36,11 @@ public class Route {
   private String endLocation;
   private Status status;
 
+  public Route(LocalDate startDate, LocalDate endDate, String startLocation, String endLocation, Status status) {
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.startLocation = startLocation;
+    this.endLocation = endLocation;
+    this.status = status;
+  }
 }

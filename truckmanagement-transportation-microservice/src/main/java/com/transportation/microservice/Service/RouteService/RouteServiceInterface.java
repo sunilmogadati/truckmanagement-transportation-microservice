@@ -10,7 +10,7 @@ public interface RouteServiceInterface {
 
 
 
-  Optional<Route> getRouteById(String id);
+  ResponseEntity<Route> getRouteById(String id);
 
   ResponseEntity<List<Route>> getListofRoute();
 

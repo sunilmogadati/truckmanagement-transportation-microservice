@@ -18,18 +18,21 @@ public class RouteController {
     @Autowired
     RouteService routeservices;
 
-    @GetMapping()
+    @GetMapping("/routes")
+    @CrossOrigin()
     public ResponseEntity<List<Route>> getListofRoutes(){
         return routeservices.getListofRoute();
     }
 
     @GetMapping("/routes/{id}")
-    public Optional<Route> getListofRoutes(@PathVariable String id){
+    @CrossOrigin()
+    public ResponseEntity<Route> getListofRoutes(@PathVariable String id){
         return routeservices.getRouteById(id);
     }
 
     @PostMapping("/routes")
     @ResponseStatus(HttpStatus.CREATED)
+    @CrossOrigin()
     public Route addRoute(@RequestBody Route route){
         return routeservices.addRoute(route);
 
