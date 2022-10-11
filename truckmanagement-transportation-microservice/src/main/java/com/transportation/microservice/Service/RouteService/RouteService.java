@@ -60,7 +60,13 @@ public class RouteService implements RouteServiceInterface  {
 
     @Override
     public ResponseEntity<Route> deleteRoute(String id) {
-        return null;
+        Optional<Route> route = routerepo.findById(id);
+        if(route.isPresent()){
+            routerepo.deleteById(id);
+            return new ResponseEntity<>(route.get(), HttpStatus.FOUND);
+        }else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @Override

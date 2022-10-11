@@ -38,7 +38,9 @@ public class RouteController {
 
     }
 
-
+    @DeleteMapping("/routes/{id}")
+    @CrossOrigin
+    public ResponseEntity<Route> deleteRoute(@PathVariable String id) { return routeservices.deleteRoute(id); }
 
 
 //    @GetMapping("/route/")
