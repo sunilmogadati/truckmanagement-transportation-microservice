@@ -18,8 +18,8 @@ public class RouteService implements RouteServiceInterface  {
     @Autowired
     RouteRepository routerepo;
 
-    private static  final String GOOGLE_API_KEY = "";
-    OkHttpClient client = new OkHttpClient();
+//    private static  final String GOOGLE_API_KEY = "";
+
     @Override
     public ResponseEntity<Route> getRouteById(String id) {
         Optional<Route> route = routerepo.findById(id);
