@@ -11,7 +11,11 @@ import java.io.Serializable;
 
 @ToString
 public enum Status implements Serializable {
-    INCOMPLETE,  COMPLETED; // Schecule, Inprogress, delayed
+    IN_PROGRESS,
+    DELAYED,
+    STARTED,
+    COMPLETED,
+    SCHEDULED;
     public String getStatus() {
         return this.name();
     }
