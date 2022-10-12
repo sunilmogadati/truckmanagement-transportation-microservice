@@ -1,3 +1,6 @@
+
+
+
 package com.transportation.microservice.Service.RouteService;
 
 import com.transportation.microservice.Dao.RouteRepository;
@@ -35,12 +38,12 @@ public class RouteService implements RouteServiceInterface  {
 
     @Override
     public ResponseEntity<List<Route>> getListofRoute() {
-       List<Route> routeData = routerepo.findAll();
-       if(routeData.size() > 1){
-           return new ResponseEntity<>(routeData, HttpStatus.OK);
-       }else{
-           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-       }
+        List<Route> routeData = routerepo.findAll();
+        if(routeData.size() > 1){
+            return new ResponseEntity<>(routeData, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
     @Override
     public Route addRoute(Route route) {
@@ -51,17 +54,17 @@ public class RouteService implements RouteServiceInterface  {
 
     @Override
     public String deleteRoute(String id) {
-      Optional<Route> route = routerepo.findById(id);
+        Optional<Route> route = routerepo.findById(id);
 
-       if(route.isPresent()){
+        if(route.isPresent()){
             Route route1 = route.get();
             routerepo.delete(route1);
             return "Route deleted: " + new ResponseEntity<>(route.get(), HttpStatus.OK)
                     .getBody()
                     .toString();
-       }else{
-           return new ResponseEntity<>(HttpStatus.NOT_FOUND).getStatusCode().toString();
-       }
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND).getStatusCode().toString();
+        }
     }
 
     @Override
@@ -102,3 +105,13 @@ public class RouteService implements RouteServiceInterface  {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
