@@ -44,7 +44,7 @@ class TruckmanagementTransportationMicroserviceApplicationTests {
                                 "The Villages, FL 32162",
                         "87 South Newport Drive \n" +
                                 "Lorain, OH 44052",
-                        Status.INCOMPLETE ), new Route(UUID.randomUUID().toString().split("_")[0],
+                        Status.IN_PROGRESS ), new Route(UUID.randomUUID().toString().split("_")[0],
                         LocalDate.of(2021, 01,01),
                         LocalDate.of(2022, 12,1),
                         "87 South Newport Drive \n" +
@@ -71,7 +71,7 @@ class TruckmanagementTransportationMicroserviceApplicationTests {
                        "The Villages, FL 32162",
                "87 South Newport Drive \n" +
                        "Lorain, OH 44052",
-               Status.INCOMPLETE );
+               Status.IN_PROGRESS );
        when(routeRepo.findById(id)).thenReturn(Optional.of(route));
 
        assertEquals("", routeService.getRouteById(id).getBody().getRouteid(), route.getRouteid());
@@ -88,7 +88,7 @@ class TruckmanagementTransportationMicroserviceApplicationTests {
                         "The Villages, FL 32162",
                 "87 South Newport Drive \n" +
                         "Lorain, OH 44052",
-                Status.INCOMPLETE );
+                Status.IN_PROGRESS );
         when(routeRepo.save(route)).thenReturn(route);
         assertEquals("Saved Route", route, routeService.addRoute(route));
 
