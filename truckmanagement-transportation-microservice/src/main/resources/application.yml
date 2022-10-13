@@ -1,18 +1,10 @@
-
 spring:
   data:
     mongodb:
-      database: RouteService
-      host: localhost
-      port: 27017
-
+        uri: mongodb+srv://Cluster47748:Z3NtRlJKVW9B@cluster47748.g8qeokq.mongodb.net/RouteService?retryWrites=true&w=majority
   mvc:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
-
-
-
-
 
 
 
