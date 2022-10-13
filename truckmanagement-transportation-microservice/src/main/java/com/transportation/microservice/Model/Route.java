@@ -37,4 +37,14 @@ public class Route {
     this.destination = endLocation;
     this.status = status;
   }
+
+  public void setRouteid(String routeid) {
+    this.routeid = routeid;
+  }
+
+  public String getRouteid() {
+    return routeid;
+  }
+
+
 }

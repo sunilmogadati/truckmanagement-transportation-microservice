@@ -39,7 +39,7 @@ public class RouteService implements RouteServiceInterface  {
     @Override
     public ResponseEntity<List<Route>> getListofRoute() {
         List<Route> routeData = routerepo.findAll();
-        if(routeData.size() > 1){
+        if(routeData.size() >= 1){
             return new ResponseEntity<>(routeData, HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -55,7 +55,6 @@ public class RouteService implements RouteServiceInterface  {
     @Override
     public String deleteRoute(String id) {
         Optional<Route> route = routerepo.findById(id);
-
         if(route.isPresent()){
             Route route1 = route.get();
             routerepo.delete(route1);

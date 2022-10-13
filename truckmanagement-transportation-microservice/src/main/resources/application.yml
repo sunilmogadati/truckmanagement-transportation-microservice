@@ -1,6 +1,18 @@
+
 spring:
   data:
     mongodb:
       database: RouteService
       host: localhost
       port: 27017
+
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+
+
+
+
+
+
