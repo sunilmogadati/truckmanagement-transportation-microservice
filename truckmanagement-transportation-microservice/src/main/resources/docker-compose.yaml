@@ -1,15 +1,15 @@
-
-version: "3"
-services:
-  localhost:
-    image: mongo:latest
-    container_name: "MohamedTechieMongodb"
-    ports:
-      - 27019:27019
-  springboot-mongodb:
-    image: springboot-mongodb:1.0
-    container_name: springboot-mongodb
-    ports:
-      - 8080:8080
-    links:
-      -   localhost
+#
+#version: "3"
+#services:
+#  localhost:
+#    image: mongo:latest
+#    container_name: "MohamedTechieMongodb"
+#    ports:
+#      - 27019:27019
+#  springboot-mongodb:
+#    image: springboot-mongodb:1.0
+#    container_name: springboot-mongodb
+#    ports:
+#      - 8080:8080
+#    links:
+#      -   localhost

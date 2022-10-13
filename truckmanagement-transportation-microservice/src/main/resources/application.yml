@@ -1,6 +1,7 @@
 spring:
   data:
     mongodb:
+      username: rootuser
       database: RouteService
       host: localhost
       port: 27017
