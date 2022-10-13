@@ -27,7 +27,7 @@ public class RouteService implements RouteServiceInterface {
             logger.info("Route found");
             return new ResponseEntity<>(route.get(), HttpStatus.FOUND);
         } else {
-            logger.error("Route not found")
+            logger.error("Route not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
