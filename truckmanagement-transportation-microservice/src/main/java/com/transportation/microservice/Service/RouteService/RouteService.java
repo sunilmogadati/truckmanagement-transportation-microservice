@@ -66,10 +66,12 @@ public class RouteService implements RouteServiceInterface {
         if (route.isPresent()) {
             Route route1 = route.get();
             routerepo.delete(route1);
+            logger.info("Route deleted");
             return "Route deleted: " + new ResponseEntity<>(route.get(), HttpStatus.OK)
                     .getBody()
                     .toString();
         } else {
+            logger.error("Route could not be deleted");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND).getStatusCode().toString();
         }
     }
@@ -80,10 +82,12 @@ public class RouteService implements RouteServiceInterface {
         Optional<Route> routes = routerepo.findById(route.getRouteid()); // Check if route id exists
         if (routes.isPresent()) {
             routerepo.save(route); // Save the routes
+            logger.info("Route updated successfully");
             return "Route update : " + new ResponseEntity<>(routes.get(), HttpStatus.OK)
                     .getBody()
                     .toString(); // Return Route information that was Updated
         } else {
+            logger.error("Route could not be updated");
             return "Routeid is not available" +
                     new ResponseEntity<>(routes.get(), HttpStatus.NOT_FOUND).getBody().toString();
         }
