@@ -2,15 +2,13 @@ package com.transportation.microservice.Controller;
 
 import com.transportation.microservice.Model.Route;
 import com.transportation.microservice.Service.RouteService.RouteService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
-
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/vi/transportation")
@@ -18,9 +16,12 @@ public class RouteController {
     @Autowired
     RouteService routeservices;
 
+    private Logger logger = LoggerFactory.getLogger(RouteController.class);
     @GetMapping("/route")
     @CrossOrigin()
     public ResponseEntity<List<Route>> getListofRoutes() {
+        logger.info("Getting the List of Route");
+
         return routeservices.getListofRoute();
     }
 
