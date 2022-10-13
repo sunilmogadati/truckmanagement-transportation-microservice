@@ -39,6 +39,7 @@ public class RouteController {
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin()
     public Route addRoute(@RequestBody Route route) {
+        logger.info("Adding route");
         return routeservices.addRoute(route);
 
     }
@@ -46,6 +47,7 @@ public class RouteController {
     @DeleteMapping("/route/{id}")
     @CrossOrigin()
     public String deleteRoute(@PathVariable String id) {
+        logger.info("Removing route");
         return routeservices.deleteRoute(id);
     }
 
@@ -53,6 +55,7 @@ public class RouteController {
     @CrossOrigin()
     public String updateRoute(@RequestBody Route route) {
         //
+        logger.info("Updating route");
         return routeservices.updateRoute(route);
     }
 
@@ -61,6 +64,7 @@ public class RouteController {
     // localhost:8080/api/vi/transportation/route/destination?destination=87 South
     // Newport Drive Lorain, OH 44052
     public List<Route> getRouteByDestination(@RequestParam String destination) {
+        logger.info("Getting routes by destination");
         return routeservices.getRouteByDestination(destination);
     }
 
@@ -70,6 +74,7 @@ public class RouteController {
     public List<Route> findByStatus(@RequestParam String status) {
 
         //
+        logger.info("Getting routes by status");
         return routeservices.getRouteByStatus(status);
     }
 
@@ -78,6 +83,7 @@ public class RouteController {
     // localhost:8080/api/vi/transportation/route/source?source=80 Griffin Ave The
     // Villages, FL 32162
     public List<Route> getRouteBySource(@RequestParam String source) {
+        logger.info("Getting route by source");
         return routeservices.getRouteBySource(source);
     }
 
@@ -89,6 +95,7 @@ public class RouteController {
     public List<Route> findRouteBySourceAndDestinationAndStatus(@RequestParam String source,
             @RequestParam String destination,
             @RequestParam String status) {
+        logger.info("Getting routes by filter");
         return routeservices.findRouteBySourceAndDestinationAndStatus(source, destination, status);
 
     }

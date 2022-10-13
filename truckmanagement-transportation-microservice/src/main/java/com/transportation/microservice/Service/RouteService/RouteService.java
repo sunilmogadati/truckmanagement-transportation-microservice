@@ -24,8 +24,10 @@ public class RouteService implements RouteServiceInterface {
     public ResponseEntity<Route> getRouteById(String id) {
         Optional<Route> route = routerepo.findById(id);
         if (route.isPresent()) {
+            logger.info("Route found");
             return new ResponseEntity<>(route.get(), HttpStatus.FOUND);
         } else {
+            logger.error("Route not found")
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -42,8 +44,10 @@ public class RouteService implements RouteServiceInterface {
     public ResponseEntity<List<Route>> getListofRoute() {
         List<Route> routeData = routerepo.findAll();
         if (routeData.size() >= 1) {
+            logger.info("Route found");
             return new ResponseEntity<>(routeData, HttpStatus.OK);
         } else {
+            logger.info("Route not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -52,6 +56,7 @@ public class RouteService implements RouteServiceInterface {
     public Route addRoute(Route route) {
         route.setRouteid(UUID.randomUUID().toString().split("_")[0]);
         System.out.println(route);
+        logger.info("Route successfully added");
         return routerepo.save(route);
     }
 
