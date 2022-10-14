@@ -45,17 +45,16 @@ jobs:
     #steps for the job
     steps:
       - uses: actions/checkout@v3
-      - name: Set up jdk
-        uses: actions/setup-java@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v1
         with:
-          java-version: '17'
-          distribution: 'zulu'
-      - name: Cache maven
-        uses: actions/cache@v3
+          java-version: '8'
+      - name: Cache Maven packages
+        uses: actions/cache@v1
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       #Finally, run tests
       - name: Run tests
-        run: mvn -B test
+        run: mvn clean install
