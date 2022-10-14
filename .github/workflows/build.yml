@@ -44,8 +44,8 @@ jobs:
       - name: Set up jdk
         uses: actions/setup-java@v3
         with:
-          java-version: '11'
-          distribution: jdk
+          java-version: '17'
+          distribution: 'zulu'
       - name: Cache maven
         uses: actions/cache@v3
         with:
