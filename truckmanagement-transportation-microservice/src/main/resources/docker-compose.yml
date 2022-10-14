@@ -1,15 +1,9 @@
+version: '3'
 
-version: "3"
 services:
-  localhost:
+  mongodb:
     image: mongo:latest
-    container_name: "MohamedTechieMongodb"
+    restart: always
     ports:
-      - 27019:27019
-  springboot-mongodb:
-    image: springboot-mongodb:1.0
-    container_name: springboot-mongodb
-    ports:
-      - 8080:8080
-    links:
-      -   localhost
+      - 27017:27017
+    network_mode: "host" 
