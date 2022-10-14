@@ -41,6 +41,8 @@ jobs:
     #steps for the job
     steps:
       - uses: actions/checkout@v3
+        with: 
+          repository: develop
       - name: Set up jdk
         uses: actions/setup-java@v3
         with:
