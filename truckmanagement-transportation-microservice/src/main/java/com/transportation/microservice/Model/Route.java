@@ -1,16 +1,10 @@
 package com.transportation.microservice.Model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonTypeId;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -31,16 +25,26 @@ public class Route {
   private LocalDate endDate;
   @Size(min = 20)
   @NotBlank(message = "Source shouldn't be Empty")
-  private String startLocation;
+  private String source;
   @NotBlank(message = "Destination shouldn't be Empty")
-  private String endLocation;
+  private String destination;
   private Status status;
 
   public Route(LocalDate startDate, LocalDate endDate, String startLocation, String endLocation, Status status) {
     this.startDate = startDate;
     this.endDate = endDate;
-    this.startLocation = startLocation;
-    this.endLocation = endLocation;
+    this.source = startLocation;
+    this.destination = endLocation;
     this.status = status;
   }
+
+  public void setRouteid(String routeid) {
+    this.routeid = routeid;
+  }
+
+  public String getRouteid() {
+    return routeid;
+  }
+
+
 }
