@@ -1,24 +1,40 @@
 
 package com.transportation.microservice.Service.RouteService;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.transportation.microservice.Dao.RouteRepository;
 import com.transportation.microservice.Model.Route;
 
+import com.transportation.microservice.Service.ParseGoogleApiService.ParseGoogleApiJson;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.*;
 
 @Service
-public class RouteService implements RouteServiceInterface {
+public class RouteService implements RouteServiceInterface  {
 
     Logger logger = LoggerFactory.getLogger(RouteService.class);
-
+    @Value("${google-api}")
+    private  String API_KEY;
     @Autowired
     RouteRepository routerepo;
+
+    @Autowired
+    ParseGoogleApiJson parseGoogleApiJson;
+
+
+
+    public RouteService(ParseGoogleApiJson parseGoogleApiJson) {
+        this.parseGoogleApiJson = parseGoogleApiJson;
+    }
 
     @Override
     public ResponseEntity<Route> getRouteById(String id) {
@@ -116,8 +132,16 @@ public class RouteService implements RouteServiceInterface {
     }
 
     @Override
-    public long getRouteDistance(String source, String destination) {
-        return 0;
+    public Map<String, String> calculateDistanceMatrix(String source, String destination) throws ParseException {
+        RestTemplate restTemplate = new RestTemplate();
+        String fooResourceUrl="https://maps.googleapis.com/maps/api/distancematrix/json?origins="+source+"&destinations="+destination+ "&units=imperial" + "&key="+ API_KEY;
+        ResponseEntity<String> response = restTemplate.getForEntity(fooResourceUrl, String.class);
+        Map<String , String > distanceMatrixInfo = parseGoogleApiJson.parseJson(response);
+
+        return distanceMatrixInfo;
+
     }
+
+
 
 }

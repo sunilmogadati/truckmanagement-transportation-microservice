@@ -2,15 +2,15 @@ package com.transportation.microservice.Controller;
 
 import com.transportation.microservice.Model.Route;
 import com.transportation.microservice.Service.RouteService.RouteService;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/vi/transportation")
@@ -24,7 +24,8 @@ public class RouteController {
     @GetMapping("/route")
     @CrossOrigin()
     public ResponseEntity<List<Route>> getListofRoutes() {
-        logger.info("Getting list of routes");
+
+        logger.info("Getting the List of Route");
         return routeservices.getListofRoute();
     }
 
@@ -97,6 +98,15 @@ public class RouteController {
             @RequestParam String status) {
         logger.info("Getting routes by filter");
         return routeservices.findRouteBySourceAndDestinationAndStatus(source, destination, status);
+
+    }
+
+
+
+    @GetMapping("route/distance-matrix")
+    Map<String, String> calculateDistanceMatrix(@RequestParam  String source ,
+                                                @RequestParam String destination) throws ParseException {
+        return routeservices.calculateDistanceMatrix(source, destination);
 
     }
 
