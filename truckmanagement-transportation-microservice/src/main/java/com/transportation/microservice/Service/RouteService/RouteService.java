@@ -1,9 +1,6 @@
-
 package com.transportation.microservice.Service.RouteService;
-
 import com.transportation.microservice.Dao.RouteRepository;
 import com.transportation.microservice.Model.Route;
-
 import com.transportation.microservice.Model.Truck;
 import com.transportation.microservice.Service.ParseGoogleApiService.ParseGoogleApiJson;
 import org.json.simple.parser.ParseException;
@@ -20,21 +17,15 @@ import java.util.*;
 
 @Service
 public class RouteService implements RouteServiceInterface  {
-
     Logger logger = LoggerFactory.getLogger(RouteService.class);
     @Value("${google-api}")
     private  String API_KEY;
     @Autowired
     RouteRepository routerepo;
-
     @Autowired
     ParseGoogleApiJson parseGoogleApiJson;
-
     @Autowired
     RestTemplate restTemplate;
-
-
-
     public RouteService(ParseGoogleApiJson parseGoogleApiJson) {
         this.parseGoogleApiJson = parseGoogleApiJson;
     }
@@ -70,9 +61,6 @@ public class RouteService implements RouteServiceInterface  {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-
-
     @Override
     public ResponseEntity<Route> addRoute(Route route) {
             int truck_id = route.getTruck_id();
@@ -90,7 +78,6 @@ public class RouteService implements RouteServiceInterface  {
                     return new ResponseEntity<>(routerepo.save(route), HttpStatus.OK);
                 }
     }
-
     @Override
     public String deleteRoute(String id) {
         Optional<Route> route = routerepo.findById(id);
@@ -128,35 +115,25 @@ public class RouteService implements RouteServiceInterface  {
     @Override
     public List<Route> getRouteByDestination(String endLocation) {
         return routerepo.getByDestination(endLocation);
-
     }
-
     @Override
     public List<Route> getRouteBySource(String source) {
         return routerepo.getBySource(source);
     }
-
     @Override
     public List<Route> getRouteByStatus(String status) {
         return routerepo.findByStatus(status);
     }
-
     @Override
     public List<Route> findRouteBySourceAndDestinationAndStatus(String source, String destination, String status) {
         return routerepo.findRouteBySourceAndDestinationAndStatus(source, destination, status);
     }
-
     @Override
     public Map<String, String> calculateDistanceMatrix(String source, String destination) throws ParseException {
         RestTemplate restTemplate = new RestTemplate();
         String fooResourceUrl="https://maps.googleapis.com/maps/api/distancematrix/json?origins="+source+"&destinations="+destination+ "&units=imperial" + "&key="+ API_KEY;
         ResponseEntity<String> response = restTemplate.getForEntity(fooResourceUrl, String.class);
         Map<String , String > distanceMatrixInfo = parseGoogleApiJson.parseJson(response);
-
         return distanceMatrixInfo;
-
     }
-
-
-
 }
