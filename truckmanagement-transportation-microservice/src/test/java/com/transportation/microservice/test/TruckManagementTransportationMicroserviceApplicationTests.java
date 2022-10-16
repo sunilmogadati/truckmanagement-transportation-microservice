@@ -41,14 +41,14 @@ class TruckManagementTransportationMicroserviceApplicationTests {
                                 "The Villages, FL 32162",
                         "87 South Newport Drive \n" +
                                 "Lorain, OH 44052",
-                        Status.IN_PROGRESS ), new Route(UUID.randomUUID().toString().split("_")[0],
+                        Status.IN_PROGRESS, 0 ), new Route(UUID.randomUUID().toString().split("_")[0],
                         LocalDate.of(2021, 01,01),
                         LocalDate.of(2022, 12,1),
                         "87 South Newport Drive \n" +
                                 "Lorain, OH 44052",
                         "8588 Bridgeton Court \n" +
                                 "Goldsboro, NC 27530",
-                        Status.COMPLETED )).collect(Collectors.toList()));
+                        Status.COMPLETED , 1)).collect(Collectors.toList()));
         assertEquals("Same", routeService.getListofRoute().getBody().size(), 2);
     }
     @Test
@@ -61,7 +61,7 @@ class TruckManagementTransportationMicroserviceApplicationTests {
                        "The Villages, FL 32162",
                "87 South Newport Drive \n" +
                        "Lorain, OH 44052",
-               Status.IN_PROGRESS );
+               Status.IN_PROGRESS, 1 );
        when(routeRepo.findById(id)).thenReturn(Optional.of(route));
 
        assertEquals("", routeService.getRouteById(id).getBody().getRouteid(), route.getRouteid());
@@ -75,7 +75,7 @@ class TruckManagementTransportationMicroserviceApplicationTests {
                         "The Villages, FL 32162",
                 "87 South Newport Drive \n" +
                         "Lorain, OH 44052",
-                Status.IN_PROGRESS );
+                Status.IN_PROGRESS, 0 );
         when(routeRepo.save(route)).thenReturn(route);
         assertEquals("Saved Route", route, routeService.addRoute(route));
     }
@@ -92,7 +92,7 @@ class TruckManagementTransportationMicroserviceApplicationTests {
                                 "The Villages, FL 32162",
                         "87 South Newport Drive \n" +
                                 "Lorain, OH 44052",
-                        Status.IN_PROGRESS ),
+                        Status.IN_PROGRESS, 0 ),
                 new Route("1903bbf7-ee50-4d4a-bd70-d9880902cfsd",
                         LocalDate.of(2021, 01,01),
                         LocalDate.of(2022, 12,1),
@@ -100,7 +100,7 @@ class TruckManagementTransportationMicroserviceApplicationTests {
                                 "Lorain, OH 44052",
                         "8588 Bridgeton Court \n" +
                                 "Goldsboro, NC 27530",
-                        Status.COMPLETED ));
+                        Status.COMPLETED, 1  ));
 
 
     }
