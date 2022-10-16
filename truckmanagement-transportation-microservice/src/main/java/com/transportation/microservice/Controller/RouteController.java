@@ -39,8 +39,8 @@ public class RouteController {
     @PostMapping("/route")
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin()
-    public Route addRoute(@RequestBody Route route) {
-        logger.info("Adding route");
+    public ResponseEntity<Route> addRoute(@RequestBody Route route) {
+        logger.info(route.getRouteid());
         return routeservices.addRoute(route);
 
     }
@@ -73,8 +73,6 @@ public class RouteController {
     @CrossOrigin()
     // localhost:8080/api/vi/transportation/route/status?status=INCOMPLETE
     public List<Route> findByStatus(@RequestParam String status) {
-
-        //
         logger.info("Getting routes by status");
         return routeservices.getRouteByStatus(status);
     }

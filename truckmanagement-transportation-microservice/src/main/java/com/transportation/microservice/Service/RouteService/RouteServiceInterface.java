@@ -9,7 +9,7 @@ import java.util.Map;
 public interface RouteServiceInterface {
   ResponseEntity<Route> getRouteById(String id);
   ResponseEntity<List<Route>> getListofRoute();
-  Route addRoute(Route route);
+  ResponseEntity<Route> addRoute(Route route);
   String deleteRoute(String id);
   String updateRoute(Route route);
   List<Route> getRouteByDestination(String destination);

@@ -14,3 +14,5 @@ spring:
   application:
     name: route-service
 google-api: AIzaSyCQwQwxiJWDleZNmt-jllujxMw7yhRviRs
+auth-id: 8d497be5-e211-4949-a18f-0bfd1d9970d3
+auth-token: th4hargQiuyG7w7L7xfO
