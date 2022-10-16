@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -21,6 +22,7 @@ import java.util.stream.Stream;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertNotEquals;
 
 
 @SpringBootTest
@@ -75,9 +77,11 @@ class TruckManagementTransportationMicroserviceApplicationTests {
                         "The Villages, FL 32162",
                 "87 South Newport Drive \n" +
                         "Lorain, OH 44052",
-                Status.IN_PROGRESS, 0 );
+                Status.IN_PROGRESS, 1 );
         when(routeRepo.save(route)).thenReturn(route);
-        assertEquals("Saved Route", route, routeService.addRoute(route));
+        ResponseEntity<Route> routeResponseEntity = routeService.addRoute(route);
+        String truck_id = routeResponseEntity.getBody().getRouteid();
+        assertEquals("Saved Route", route.getRouteid(),  truck_id);
     }
 
     @Test
