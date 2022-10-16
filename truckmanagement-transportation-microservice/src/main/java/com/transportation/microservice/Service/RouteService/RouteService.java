@@ -1,10 +1,10 @@
 
 package com.transportation.microservice.Service.RouteService;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.transportation.microservice.Dao.RouteRepository;
 import com.transportation.microservice.Model.Route;
 
+import com.transportation.microservice.Model.Truck;
 import com.transportation.microservice.Service.ParseGoogleApiService.ParseGoogleApiJson;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
@@ -29,6 +29,9 @@ public class RouteService implements RouteServiceInterface  {
 
     @Autowired
     ParseGoogleApiJson parseGoogleApiJson;
+
+    @Autowired
+    RestTemplate restTemplate;
 
 
 
@@ -68,12 +71,24 @@ public class RouteService implements RouteServiceInterface  {
         }
     }
 
+
+
     @Override
-    public Route addRoute(Route route) {
-        route.setRouteid(UUID.randomUUID().toString().split("_")[0]);
-        System.out.println(route);
-        logger.info("Route successfully added");
-        return routerepo.save(route);
+    public ResponseEntity<Route> addRoute(Route route) {
+            int truck_id = route.getTruck_id();
+            String a = String.valueOf(route.getTruck_id());
+            String url = "http://ec2-100-27-25-68.compute-1.amazonaws.com:9000/api/v1/truck/" + truck_id;
+            ResponseEntity<Truck> response = restTemplate.getForEntity(url, Truck.class);
+            Truck truck = response.getBody();
+                if (response.getStatusCode().is2xxSuccessful()) {
+                    logger.info("Execute if");
+                    route.setRouteid(UUID.randomUUID().toString().split("_")[0]);
+                    logger.info("Route successfully added");
+                    return new ResponseEntity<>(routerepo.save(route), HttpStatus.OK);
+                }else{
+                    route.setTruck_id(00000);
+                    return new ResponseEntity<>(routerepo.save(route), HttpStatus.OK);
+                }
     }
 
     @Override

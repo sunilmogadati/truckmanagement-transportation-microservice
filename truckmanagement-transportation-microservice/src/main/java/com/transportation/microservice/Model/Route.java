@@ -29,6 +29,8 @@ public class Route {
   @NotBlank(message = "Destination shouldn't be Empty")
   private String destination;
   private Status status;
+  private int truck_id;
+
 
   public Route(LocalDate startDate, LocalDate endDate, String startLocation, String endLocation, Status status) {
     this.startDate = startDate;
