@@ -26,9 +26,7 @@ public class RouteService implements RouteServiceInterface  {
     ParseGoogleApiJson parseGoogleApiJson;
     @Autowired
     RestTemplate restTemplate;
-    public RouteService(ParseGoogleApiJson parseGoogleApiJson) {
-        this.parseGoogleApiJson = parseGoogleApiJson;
-    }
+
 
     @Override
     public ResponseEntity<Route> getRouteById(String id) {
@@ -42,6 +40,8 @@ public class RouteService implements RouteServiceInterface  {
         }
     }
 
+
+
     /**
      * This <Method Returns ReposeEntity of List of Routes
      * Checks the Size of routeData if size is less than 1 : returns HttoStatus
@@ -49,6 +49,7 @@ public class RouteService implements RouteServiceInterface  {
      *
      * @return ReposeEntity of List of Routes
      */
+
 
     @Override
     public ResponseEntity<List<Route>> getListofRoute() {
@@ -63,18 +64,18 @@ public class RouteService implements RouteServiceInterface  {
     }
     @Override
     public ResponseEntity<Route> addRoute(Route route) {
-            int truck_id = route.getTruck_id();
-            String a = String.valueOf(route.getTruck_id());
+            int truck_id = route.getTruckId();
+            String a = String.valueOf(route.getTruckId());
             String url = "http://ec2-100-27-25-68.compute-1.amazonaws.com:9000/api/v1/truck/" + truck_id;
             ResponseEntity<Truck> response = restTemplate.getForEntity(url, Truck.class);
             Truck truck = response.getBody();
                 if (response.getStatusCode().is2xxSuccessful()) {
                     logger.info("Execute if");
-                    route.setRouteid(UUID.randomUUID().toString().split("_")[0]);
+                    route.setRouteId(UUID.randomUUID().toString().split("_")[0]);
                     logger.info("Route successfully added");
                     return new ResponseEntity<>(routerepo.save(route), HttpStatus.OK);
                 }else{
-                    route.setTruck_id(00000);
+                    route.setTruckId(00000);
                     return new ResponseEntity<>(routerepo.save(route), HttpStatus.OK);
                 }
     }
@@ -97,7 +98,7 @@ public class RouteService implements RouteServiceInterface  {
     @Override
     public String updateRoute(Route route) {
         logger.info("Updating Route.....");
-        Optional<Route> routes = routerepo.findById(route.getRouteid()); // Check if route id exists
+        Optional<Route> routes = routerepo.findById(route.getRouteId()); // Check if route id exists
         if (routes.isPresent()) {
             routerepo.save(route); // Save the routes
             logger.info("Route updated successfully");
@@ -135,5 +136,11 @@ public class RouteService implements RouteServiceInterface  {
         ResponseEntity<String> response = restTemplate.getForEntity(fooResourceUrl, String.class);
         Map<String , String > distanceMatrixInfo = parseGoogleApiJson.parseJson(response);
         return distanceMatrixInfo;
+    }
+
+    @Override
+    public List<Route> findByTruckId(int truckId) {
+        logger.info("Truck id" + String.valueOf(truckId));
+       return routerepo.getByTruckId(truckId);
     }
 }

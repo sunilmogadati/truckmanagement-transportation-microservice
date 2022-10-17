@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/vi/transportation")
@@ -40,11 +41,17 @@ public class RouteController {
     @ResponseStatus(HttpStatus.CREATED)
     @CrossOrigin()
     public ResponseEntity<Route> addRoute(@RequestBody Route route) {
-        logger.info(route.getRouteid());
+        logger.info(route.getRouteId());
         return routeservices.addRoute(route);
 
     }
 
+    @GetMapping("")
+    @CrossOrigin()
+    public List<Route> findByTruckId(@RequestParam int truckId ){
+        logger.info("Printing Truck id " + String.valueOf(truckId));
+        return routeservices.findByTruckId(truckId);
+    }
     @DeleteMapping("/route/{id}")
     @CrossOrigin()
     public String deleteRoute(@PathVariable String id) {

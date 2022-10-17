@@ -18,7 +18,7 @@ import java.time.LocalDate;
 
 public class Route {
   @Id
-  private String routeid;
+  private String routeId;
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
   private LocalDate startDate;
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -29,7 +29,7 @@ public class Route {
   @NotBlank(message = "Destination shouldn't be Empty")
   private String destination;
   private Status status;
-  private int truck_id;
+  private int truckId;
 
 
   public Route(LocalDate startDate, LocalDate endDate, String startLocation, String endLocation, Status status) {
@@ -40,12 +40,12 @@ public class Route {
     this.status = status;
   }
 
-  public void setRouteid(String routeid) {
-    this.routeid = routeid;
+  public void setRouteId(String routeId) {
+    this.routeId = routeId;
   }
 
-  public String getRouteid() {
-    return routeid;
+  public String getRouteId() {
+    return routeId;
   }
 
 
