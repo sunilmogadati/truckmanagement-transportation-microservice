@@ -18,4 +18,4 @@ google-api: AIzaSyCQwQwxiJWDleZNmt-jllujxMw7yhRviRs
 eureka:
   client:
     service-url:
-      defaultZone: http://ec2-54-146-255-132.compute-1.amazonaws.com:8020/eureka/
+      defaultZone: http://ec2-3-91-189-171.compute-1.amazonaws.com:8020/eureka/
