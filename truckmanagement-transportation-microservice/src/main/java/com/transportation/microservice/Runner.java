@@ -6,13 +6,11 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
-
+import java.io.IOException;
 @SpringBootApplication()
 @EnableSwagger2
 @EnableEurekaClient
 public class Runner{
-    public static void main(String[] args) {
-        SpringApplication.run(Runner.class, args);
-    }
-
+    public static void main(String[] args) { SpringApplication.run(Runner.class, args); }
+    
 }

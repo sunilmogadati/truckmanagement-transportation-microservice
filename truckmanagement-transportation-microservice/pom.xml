@@ -139,7 +139,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>truckManagement-mongodb-docker</finalName>
+		<finalName>truckmanagement-docker</finalName>
 	</build>
 
 </project>
