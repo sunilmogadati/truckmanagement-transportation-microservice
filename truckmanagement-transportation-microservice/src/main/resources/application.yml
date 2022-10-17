@@ -3,14 +3,17 @@ spring:
     mongodb:
         uri: mongodb+srv://Cluster47748:Z3NtRlJKVW9B@cluster47748.g8qeokq.mongodb.net/RouteService?retryWrites=true&w=majority
   mvc:
-    pathmatch:
-      matching-strategy: ANT_PATH_MATCHER
-
-
-
-
+    pathMatch:
+      matching-strategy: ant_path_matcher
   application:
     name: route-service
+
+  cloud:
+    config:
+      enabled: false
 google-api: AIzaSyCQwQwxiJWDleZNmt-jllujxMw7yhRviRs
-auth-id: 8d497be5-e211-4949-a18f-0bfd1d9970d3
-auth-token: th4hargQiuyG7w7L7xfO
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://ec2-54-146-255-132.compute-1.amazonaws.com:8020/eureka/

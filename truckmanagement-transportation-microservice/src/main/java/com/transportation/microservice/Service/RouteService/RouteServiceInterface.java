@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import com.transportation.microservice.Model.Route;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface RouteServiceInterface {
   ResponseEntity<Route> getRouteById(String id);
@@ -17,6 +18,8 @@ public interface RouteServiceInterface {
   List<Route> getRouteByStatus(String status);
   List<Route> findRouteBySourceAndDestinationAndStatus(String source, String destination, String status);
   Map<String, String> calculateDistanceMatrix(String source , String destination) throws ParseException;
+
+  List<Route> findByTruckId(int truckId);
 
 
 

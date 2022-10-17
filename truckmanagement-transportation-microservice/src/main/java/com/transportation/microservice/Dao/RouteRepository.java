@@ -13,4 +13,7 @@ public interface RouteRepository extends MongoRepository<Route, String> {
     List<Route> getByDestination(String destination);
     List<Route> getBySource(String source);
     List<Route> findRouteBySourceAndDestinationAndStatus(String source, String destination, String status);
+    List<Route> getByTruckId(int truckId);
+
+
 }
