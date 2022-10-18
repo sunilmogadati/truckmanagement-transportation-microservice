@@ -14,8 +14,11 @@ spring:
     config:
       enabled: false
 google-api: AIzaSyCQwQwxiJWDleZNmt-jllujxMw7yhRviRs
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://ec2-3-91-189-171.compute-1.amazonaws.com:8020/eureka/
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://ec2-3-91-189-171.compute-1.amazonaws.com:8020/eureka/
+#
+#
+#
