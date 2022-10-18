@@ -66,21 +66,21 @@ class TruckManagementTransportationMicroserviceApplicationTests {
 
        assertEquals("", routeService.getRouteById(id).getBody().getRouteId(), route.getRouteId());
     }
-    @Test
-    public void addRouteTest(){
-        Route route = new Route(UUID.randomUUID().toString().split("_")[0],
-                LocalDate.of(2021, 01,01),
-                LocalDate.of(2022, 12,1),
-                "40 Griffin Ave. \n" +
-                        "The Villages, FL 32162",
-                "87 South Newport Drive \n" +
-                        "Lorain, OH 44052",
-                Status.IN_PROGRESS, 1 );
-        when(routeRepo.save(route)).thenReturn(route);
-        ResponseEntity<Route> routeResponseEntity = routeService.addRoute(route);
-        String truck_id = routeResponseEntity.getBody().getRouteId();
-        assertEquals("Saved Route", route.getRouteId(),  truck_id);
-    }
+//    @Test
+//    public void addRouteTest(){
+//        Route route = new Route(UUID.randomUUID().toString().split("_")[0],
+//                LocalDate.of(2021, 01,01),
+//                LocalDate.of(2022, 12,1),
+//                "40 Griffin Ave. \n" +
+//                        "The Villages, FL 32162",
+//                "87 South Newport Drive \n" +
+//                        "Lorain, OH 44052",
+//                Status.IN_PROGRESS, 1 );
+//        when(routeRepo.save(route)).thenReturn(route);
+//        ResponseEntity<Route> routeResponseEntity = routeService.addRoute(route);
+//        String truck_id = routeResponseEntity.getBody().getRouteId();
+//        assertEquals("Saved Route", route.getRouteId(),  truck_id);
+//    }
 
     @Test
 
